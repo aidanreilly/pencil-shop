@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+    div.container {
+        width: 100%;
+        text-align: center;
+        border: 1px solid gray;
+    }
+    
+    header,
+    footer {
+        padding: 1em;
+        color: black;
+        background-color: white;
+        clear: left;
+        text-align: center;
+    }
+    
+    nav {
+        float: left;
+        max-width: 100%;
+        margin: 0;
+        padding: 1px;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .center {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .bold {
+        font-size: 24px;
+    }
+    
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    nav ul a {
+        text-decoration: none;
+    }
+    
+    article {
+        margin-left: 170px;
+        border-left: 1px solid gray;
+        padding: 1em;
+        overflow: hidden;
+    }
+    
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="http://localhost:5000/banner.jpg" />
+        </header>
+    </div>
+    <nav class="center">
+        <p class="bold"><a href="/shop">Shop</a> / <a href="/cart">Cart</a> / <a href="/backoffice">Back Office</a> / <a href="/about">About</a></p>
+    </nav>
