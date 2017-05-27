@@ -90,6 +90,7 @@ exports.show = function(connection, res) {
                 html += '</tr>';
             }
             html += "</table>"
+            html += fs.readFileSync("./footer.html", 'utf8');
             //html += exports.workFormHtml();
             exports.sendHtml(res, html);
         }
@@ -101,8 +102,10 @@ exports.showShop = function(connection, res) {
 };
 
 exports.shopHtml = function(rows) {
+    
     var html = fs.readFileSync("./header.html", 'utf8');
     return html;
+
 };
 
 //exports.workFormHtml = function() {
