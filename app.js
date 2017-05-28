@@ -64,7 +64,7 @@ var server = http.createServer(function(req, res) {
                     resource.show(connection, res);
                     break;
                 case '/cart':
-                    resource.show(connection, res);
+                    resource.cart(connection, res);
                     break;
                 case '/back-office':
                     resource.show(connection, res);

@@ -1,26 +1,22 @@
 CREATE DATABASE PRODUCTS;
 USE PRODUCTS;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
 CREATE TABLE `pencils` (
   `id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `hardness` int(11) NOT NULL,
   `thickness` int(11) NOT NULL,
   `description` varchar(256) DEFAULT NULL,
-  `image_url` varchar(256) DEFAULT NULL,
-  `brand` int(11) NOT NULL
+  `image_url` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `pencils` (`id`, `name`, `hardness`, `thickness`, `description`, `image_url`, `brand`) VALUES
-(1, 'MAJESTIC JUMBO NUMBER 2 PENCIL', 107, 15, 'Loverly pencil this', 'Caran_d_Ache_Bicolor_999_pencil_grande.jpg', 1),
-(2, 'NO SMOKING MINI PENCIL - HB', 1, 0, 'Loverly pencil this', 'eye_ball_no_smoking_pencil_grande.jpg', 1),
-(3, 'ACADEMIC WRITING 9606 PENCIL - HB', 20, 125, 'Loverly pencil this', 'Generals_Badger_pencil_grande.jpg', 1),
-(4, 'BACKYARDS AND GARDENS OF PORTUGAL SCENTED PENCILS', 9, 5, 'Loverly pencil this', 'hester_and_cook_midtown_white_pencil_grande.jpg', 1),
-(5, 'BADGER #2 PENCIL', 33, 15, 'Loverly pencil this', 'kitaboshi_academic_writing_pencil_grande.jpg', 1);
+INSERT INTO `pencils` (`id`, `name`, `hardness`, `thickness`, `description`, `image_url`) VALUES
+(1, 'MAJESTIC JUMBO NUMBER 2 PENCIL', 2.0, 15, 'Nostalgic, comfortable to hold and just downright cute, these jumbo pencils are a standard HB/#2 graphite.', 'Caran_d_Ache_Bicolor_999_pencil_grande.jpg'),
+(2, 'NO SMOKING MINI PENCIL - HB', 2.5, 10, 'This tiny pencil measures a mere 3 1/2 inches and looks exactly like a (less deadly) cigarette.', 'eye_ball_no_smoking_pencil_grande.jpg'),
+(3, 'ACADEMIC WRITING 9606 PENCIL - HB', 1.0, 12, 'This pencil contains a 5mm wide stick of super soft, super dark water-soluble graphite.', 'Generals_Badger_pencil_grande.jpg'),
+(4, 'BACKYARDS AND GARDENS OF PORTUGAL SCENTED PENCILS', 2.2, 15, 'This pencil is made in the US and features a nostalgic gold end-cap.', 'hester_and_cook_midtown_white_pencil_grande.jpg'),
+(5, 'BADGER #2 PENCIL', 1.1, 17, 'Designated for Academic Writing, which is printed on the back of the pencil.', 'kitaboshi_academic_writing_pencil_grande.jpg');
 
 
 CREATE TABLE `stationery` (
@@ -37,18 +33,17 @@ INSERT INTO `stationery` (`id`, `NAME`) VALUES
 
 
 CREATE TABLE `orders` (
-  `id` int(10) NOT NULL,
-  `date` date DEFAULT NULL,
-  `description` longtext
+  `id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `hardness` int(11) NOT NULL,
+  `thickness (mm)` int(11) NOT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  `image_url` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `orders` (`id`, `date`, `description`) VALUES
-(1, '2012-12-02', 'Order desc, some pencils');
-
 ALTER TABLE `pencils`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `brand` (`brand`);
+  ADD PRIMARY KEY (`id`);
 
 
 ALTER TABLE `stationery`
@@ -66,6 +61,3 @@ ALTER TABLE `stationery`
 
 ALTER TABLE `orders`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
-ALTER TABLE `pencils`
-  ADD CONSTRAINT `pencils_ibfk_1` FOREIGN KEY (`brand`) REFERENCES `stationery` (`id`) ON UPDATE CASCADE;

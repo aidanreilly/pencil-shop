@@ -106,6 +106,15 @@ exports.about = function(connection, res) {
     exports.sendHtml(res, html);
 };
 
+exports.cart = function(connection, res) {
+    var html = fs.readFileSync("./header.html", 'utf8');
+    html += '<h1>Your Items</h1>'
+    html += '<p>Press the buy button to buy the items. Thanks for your custom!</p>'
+
+    html += fs.readFileSync("./footer.html", 'utf8');
+    exports.sendHtml(res, html);
+};
+
 exports.showShop = function(connection, res) {
     exports.show(connection, res, true);
 };
