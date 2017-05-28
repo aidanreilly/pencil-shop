@@ -23,12 +23,6 @@ connection.connect(function(err) {
     }
 });
 
-
-//table headers
-//var Tableheaders = [
-//   "Name", "Hardness", "Thickness", "Description", "Image", "Buy it Now"
-//];
-
 //serve any images in the public folder on port
 var fileServer = new static.Server('./public');
 /*
@@ -39,19 +33,24 @@ http.createServer(function(req, res) {
 
 }).listen(5000);
 
-//var server = http.createServer(function(req, res) {
-//    var url = req.url;
-//    console.log('Request starting: ' + url);
-//    showPage(req, res, displayShop(true), "./footer.html");
-//
-//});
-
 var server = http.createServer(function(req, res) {
     switch (req.method) {
         case 'POST':
             switch (req.url) {
                 case '/':
-                    resource.add(connection, req, res);
+                    resource.addToStock(connection, req, res);
+                    break;
+                case '/addtocart':
+                    resource.addToCart(connection, req, res);
+                    break;
+                case '/delete':
+                    resource.delete(connection, req, res);
+                    break;
+                case '/remove':
+                    resource.remove(connection, req, res);
+                    break;                    
+                case '/update':
+                    resource.update(connection, req, res);
                     break;
             }
             break;
@@ -68,6 +67,9 @@ var server = http.createServer(function(req, res) {
                     break;
                 case '/backoffice':
                     resource.backoffice(connection, res);
+                    break;
+                case '/addstock':
+                    resource.addstock(connection, res);
                     break;
                 case '/about':
                     resource.about(connection, res);
