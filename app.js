@@ -66,14 +66,17 @@ var server = http.createServer(function(req, res) {
                 case '/cart':
                     resource.cart(connection, res);
                     break;
-                case '/back-office':
-                    resource.show(connection, res);
+                case '/backoffice':
+                    resource.backoffice(connection, res);
                     break;
                 case '/about':
                     resource.about(connection, res);
                     break;
                 case '/buy':
                     resource.show(connection, res);
+                    break;
+                case '/thanks':
+                    resource.thanks(connection, res);
                     break;
             }
             break;

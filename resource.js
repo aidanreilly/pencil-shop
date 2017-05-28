@@ -64,14 +64,14 @@ exports.archive = function(connection, req, res) {
 
 exports.show = function(connection, res) {
     var Tableheaders = [
-        "Name", "Hardness", "Thickness", "Description", "Image", "Buy it Now"
+        "Name", "Hardness", "Thickness (mm)", "Description", "Image", "Buy it Now"
     ];
     var query = "SELECT * FROM pencils ";
     connection.query(
         query,
         function(err, rows) {
             if (err) throw err;
-            html = exports.shopHtml(rows);
+            html = fs.readFileSync("./header.html", 'utf8');
             html += "<table border=1 width=100%>";
             html += '<tr style="font-size: 20px;" >';
             var i;
@@ -106,25 +106,96 @@ exports.about = function(connection, res) {
     exports.sendHtml(res, html);
 };
 
-exports.cart = function(connection, res) {
+exports.thanks = function(connection, res) {
     var html = fs.readFileSync("./header.html", 'utf8');
-    html += '<h1>Your Items</h1>'
-    html += '<p>Press the buy button to buy the items. Thanks for your custom!</p>'
-
+    html += '<div class="container">'
+    html += '<h1>Thank you!</h1>'
+    html += '<p>We really appreciate your custom. Your package will ship on the next working day. See you again soon hopefully :)</p>'
+    html += '<img  src="http://localhost:5000/the_pencil_box_subscription_1024x1024.jpg" align="center"/>'
+    html += '</div>'
     html += fs.readFileSync("./footer.html", 'utf8');
     exports.sendHtml(res, html);
 };
 
-exports.showShop = function(connection, res) {
-    exports.show(connection, res, true);
+exports.cart = function(connection, res) {
+    var Tableheaders = [
+        "Name", "Hardness", "Thickness (mm)", "Description"
+    ];
+    var query = "SELECT * FROM pencils ";
+    connection.query(
+        query,
+        function(err, rows) {
+            if (err) throw err;
+            html = fs.readFileSync("./header.html", 'utf8');
+            html += '<h1>Your Items</h1>'
+            html += '<p>Press the buy button to buy the items. Thanks for your custom!</p>'
+            html += "<table border=1 width=100%>";
+            html += '<tr style="font-size: 20px;" >';
+            var i;
+            for (i = 0; i < Tableheaders.length; i++) {
+                html += '<th>' + Tableheaders[i] + '</th>';
+            }
+            html += '</tr>';
+            for (var i = 0; i < rows.length; i++) {
+                html += '<tr style="font-size: 20px;" >';
+                html += '<td>' + rows[i].name + '</td>';
+                html += '<td>' + rows[i].hardness + '</td>';
+                html += '<td>' + rows[i].thickness + '</td>';
+                html += '<td>' + rows[i].description + '</td>';
+                html += '</tr>';
+            }
+            html += "</table>"
+            html += "<br>"
+            html += '<a href="http://localhost:3000/thanks" target="_blank"><button id="buy">Buy Now!</button></a>'
+            html += fs.readFileSync("./footer.html", 'utf8');
+            //html += exports.workFormHtml();
+            exports.sendHtml(res, html);
+        }
+    );
 };
 
-exports.shopHtml = function(rows) {
-
-    var html = fs.readFileSync("./header.html", 'utf8');
-    return html;
-
+exports.backoffice = function(connection, res) {
+    var Tableheaders = [
+        "Name", "Description", "Quantity in Stock", "Update"
+    ];
+    var query = "SELECT * FROM pencils ";
+    connection.query(
+        query,
+        function(err, rows) {
+            if (err) throw err;
+            html = fs.readFileSync("./header.html", 'utf8');
+            html += '<h1>Back Office</h1>'
+            html += '<p>Welcome to the stock room. Here you can update the items that are in stock.</p>'
+            html += "<table border=1 width=100%>";
+            html += '<tr style="font-size: 20px;" >';
+            var i;
+            for (i = 0; i < Tableheaders.length; i++) {
+                html += '<th>' + Tableheaders[i] + '</th>';
+            }
+            html += '</tr>';
+            for (var i = 0; i < rows.length; i++) {
+                html += '<tr style="font-size: 20px;" >';
+                html += '<td>' + rows[i].name + '</td>';
+                html += '<td>' + rows[i].description + '</td>';
+                html += '<td>' + rows[i].stock + '</td>';
+                html += '<td><form>' + '<button type="submit" class="center">Update Stock Levels</button>' + '</form></td>'
+                html += '</tr>';
+            }
+            html += "</table>"
+            html += "<br>"
+            html += '<a href="#"><button id="buy">Add New Stock Item</button></a>'
+            html += fs.readFileSync("./footer.html", 'utf8');
+            //html += exports.workFormHtml();
+            exports.sendHtml(res, html);
+        }
+    );
 };
+
+
+
+
+
+
 
 //exports.workFormHtml = function() {
 //    var html = '<form method="POST" action="/">' +
