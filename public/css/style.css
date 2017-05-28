@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <!--<link href="css/style.css" rel="stylesheet" media="screen">-->
-    <style>
     div.container {
         width: 100%;
         text-align: center;
-        
+        border: 1px solid gray;
     }
     
     header,
@@ -33,16 +27,11 @@
         display: block;
         font-family: arial, sans-serif;
         width: 100%;
-        margin-top: 30px;
-        padding: 10px 0;
-        border-top: 1px solid #e5e5e5
     }
     
     .center {
         text-align: center;
-        display:inline-block;
         width: 100%;
-        padding: 5px;
     }
     
     .right {
@@ -87,45 +76,21 @@
     }
     
     tr:nth-child(even) {
-        background-color: #f5f2fc;
+        background-color: #dddddd;
     }
     
     #container {
         width: 100%;
-    }
-    
+    }    
     #left {
         float: left;
-        width: 300px;
+            width: 300px;
     }
-    
     #right {
         float: right;
-        width: 300px;
-    }
-    
+            width: 300px;
+        }
     #center {
         margin: 0 auto;
         width: 300px;
     }
-
-td img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-</head>
-
-<body>
-    <div class="container">
-        <header>
-            <img src="http://localhost:5000/banner.jpg" />
-        </header>
-    </div>
-    <nav class="center">
-        <p class="bold"><a href="/shop">Shop</a> / <a href="/cart">Cart</a> / <a href="/backoffice">Back Office</a> / <a href="/about">About</a></p>
-    </nav>

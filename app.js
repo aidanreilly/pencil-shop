@@ -70,7 +70,7 @@ var server = http.createServer(function(req, res) {
                     resource.show(connection, res);
                     break;
                 case '/about':
-                    resource.show(connection, res);
+                    resource.about(connection, res);
                     break;
                 case '/buy':
                     resource.show(connection, res);

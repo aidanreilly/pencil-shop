@@ -85,8 +85,8 @@ exports.show = function(connection, res) {
                 html += '<td>' + rows[i].hardness + '</td>';
                 html += '<td>' + rows[i].thickness + '</td>';
                 html += '<td>' + rows[i].description + '</td>';
-                html += '<td>' + '<img src="http://localhost:5000/' + rows[i].image_url + '">' + '</img>' + '</td>'
-                html += '<td><form method="post" action="/buy(' + rows[i].id + ')">' + '<button type="submit" align="center">Add to Cart</button>' + '</form></td>'
+                html += '<td align="center">' + '<img src="http://localhost:5000/' + rows[i].image_url + '" style="max-width: 150px">' + '</img>' + '</td>'
+                html += '<td><form method="post" action="/buy(' + rows[i].id + ')">' + '<button type="submit" class="center">Add to Cart</button>' + '</form></td>'
                 html += '</tr>';
             }
             html += "</table>"
@@ -97,12 +97,21 @@ exports.show = function(connection, res) {
     );
 };
 
+exports.about = function(connection, res) {
+    var html = fs.readFileSync("./header.html", 'utf8');
+    html += '<div class="container">'
+    html += '<img  src="http://localhost:5000/Website_photo_1400x800.jpg" align="center"/>'
+    html += '</div>'
+    html += fs.readFileSync("./footer.html", 'utf8');
+    exports.sendHtml(res, html);
+};
+
 exports.showShop = function(connection, res) {
     exports.show(connection, res, true);
 };
 
 exports.shopHtml = function(rows) {
-    
+
     var html = fs.readFileSync("./header.html", 'utf8');
     return html;
 
